@@ -9,4 +9,4 @@ Encoding `windows-1251` will be converted to `utf-8`
 Status
 ------
 
-Current status of project is *developing*
+Current status of project is *beta* (all works, but not so well was tested)
