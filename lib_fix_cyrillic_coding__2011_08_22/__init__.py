@@ -47,7 +47,8 @@ def fix_cyrillic_coding(
         elif isdir(path):
             log('scanning directory {path!r} for scheduling...'.
                     format(path=path))
-            for dirpath, dirnames, filenames in walk(path):
+            for dirpath, dirnames, filenames in walk(
+                    path, followlinks=followlinks):
                 for filename in filenames:
                     subpath = join(dirpath, filename)
                     
