@@ -17,6 +17,8 @@
 
 assert str is not bytes
 
+DEFAULT_EXTENSION='txt'
+
 def none_log(*args, **kwargs):
     pass
 
@@ -33,13 +35,13 @@ def fix_cyrillic_coding(
     if followlinks is None:
         followlinks = False
     if extension is None:
-        extension = '.txt'
+        extension = DEFAULT_EXTENSION
     
     txt_list = []
     
     for path in path_list:
         if isfile(path):
-            if path.endswith(extension):
+            if path.endswith('.{}'.format(extension)):
                 txt_list.append(path)
                 log('scheduled file {path!r}'.format(path=path))
                 
@@ -52,7 +54,7 @@ def fix_cyrillic_coding(
                 for filename in filenames:
                     subpath = join(dirpath, filename)
                     
-                    if subpath.endswith(extension):
+                    if subpath.endswith('.{}'.format(extension)):
                         txt_list.append(subpath)
                         log('  scheduled file {path!r}'.format(path=subpath))
             
