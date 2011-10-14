@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- mode: python; coding: utf-8 -*-
 #
-# Copyright 2011 Andrej A Antonov <polymorphm@qmail.com>
+# Copyright 2011 Andrej A Antonov <polymorphm@qmail.com>.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from lib_fix_cyrillic_coding__2011_08_22.main import main
+
+assert str is not bytes
 
 if __name__ == '__main__':
     error = main()
