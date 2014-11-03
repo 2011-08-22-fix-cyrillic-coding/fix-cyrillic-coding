@@ -24,14 +24,15 @@
 
 assert str is not bytes
 
+import sys
+
 def safe_print(*args, sep=None, end=None, file=None):
     if sep is None:
         sep = ' '
     if end is None:
         end = '\n'
     if file is None:
-        from sys import stdout as sys_stdout
-        file = sys_stdout
+        file = sys.stdout
     
     def safe_conv(value):
         encoding = getattr(file, 'encoding', None) or 'utf-8'

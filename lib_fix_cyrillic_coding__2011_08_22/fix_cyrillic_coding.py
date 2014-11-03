@@ -24,7 +24,11 @@
 
 assert str is not bytes
 
-DEFAULT_EXTENSION='txt'
+from os import walk
+from os.path import isfile, isdir, join
+import traceback
+
+DEFAULT_EXTENSION = 'txt'
 
 def none_log(*args, **kwargs):
     pass
@@ -34,9 +38,6 @@ def fix_cyrillic_coding(
         log=None,
         followlinks=None,
         extension=None):
-    from os import walk
-    from os.path import isfile, isdir, join
-    
     if log is None:
         log = none_log
     if followlinks is None:
@@ -88,8 +89,7 @@ def fix_cyrillic_coding(
                 result_str = 'fixed'
             else:
                 result_str = 'unchanged'
-        except EnvironmentError:
-            from traceback import print_exc
-            print_exc()
+        except OSError:
+            traceback.print_exc()
         else:
             log('PASS ({result_str})'.format(result_str=result_str))

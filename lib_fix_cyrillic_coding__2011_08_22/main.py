@@ -24,32 +24,38 @@
 
 assert str is not bytes
 
-from . import fix_cyrillic_coding
+import argparse
+from .safe_print import safe_print
+from .import fix_cyrillic_coding
 
 def main():
-    from argparse import ArgumentParser
-    
-    parser = ArgumentParser(
-            description='utility for massive fixing of `txt`-files encoding')
+    parser = argparse.ArgumentParser(
+            description='utility for massive fixing of `txt`-files encoding',
+            )
     parser.add_argument('path', nargs='+',
-            help='path to txt-file of directory of txt-files')
+            help='path to txt-file of directory of txt-files',
+            )
     parser.add_argument('--quiet', action='store_true',
-            help='quiet (no output)')
+            help='quiet (no output)',
+            )
     parser.add_argument('--followlinks', action='store_true',
             help='follow symbolic links. '
                     'it can lead to infinite recursion '
-                    'if a link points to a parent directory of itself')
+                    'if a link points to a parent directory of itself',
+            )
     parser.add_argument('--extension',
-            help='non-standard of txt-file extension')
+            help='non-standard of txt-file extension',
+            )
     args = parser.parse_args()
     
     if not args.quiet:
-        from .safe_print import safe_print as log
+        log = safe_print
     else:
         log = None
     
-    fix_cyrillic_coding(
+    fix_cyrillic_coding.fix_cyrillic_coding(
             args.path,
             log=log,
             followlinks=args.followlinks,
-            extension=args.extension)
+            extension=args.extension,
+            )
