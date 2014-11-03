@@ -32,19 +32,29 @@ def main():
     parser = argparse.ArgumentParser(
             description='utility for massive fixing of `txt`-files encoding',
             )
-    parser.add_argument('path', nargs='+',
+    parser.add_argument(
+            'path',
+            metavar='PATH',
+            nargs='+',
             help='path to txt-file of directory of txt-files',
             )
-    parser.add_argument('--quiet', action='store_true',
+    parser.add_argument(
+            '--quiet',
+            action='store_true',
             help='quiet (no output)',
             )
-    parser.add_argument('--followlinks', action='store_true',
+    parser.add_argument(
+            '--follow',
+            action='store_true',
             help='follow symbolic links. '
                     'it can lead to infinite recursion '
                     'if a link points to a parent directory of itself',
             )
-    parser.add_argument('--extension',
-            help='non-standard of txt-file extension',
+    parser.add_argument(
+            '--ext',
+            metavar='EXTENSION',
+            help='non-standard of txt-file extension. default is {!r}'.format(
+                    fix_cyrillic_coding.DEFAULT_EXTENSION),
             )
     args = parser.parse_args()
     
@@ -56,6 +66,6 @@ def main():
     fix_cyrillic_coding.fix_cyrillic_coding(
             args.path,
             log=log,
-            followlinks=args.followlinks,
-            extension=args.extension,
+            followlinks=args.follow,
+            extension=args.ext,
             )
