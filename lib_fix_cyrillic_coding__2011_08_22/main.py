@@ -23,7 +23,7 @@ def main():
     from argparse import ArgumentParser
     
     parser = ArgumentParser(
-            description='Utility for massive fixing of `txt`-files encoding')
+            description='utility for massive fixing of `txt`-files encoding')
     parser.add_argument('path', nargs='+',
             help='path to txt-file of directory of txt-files')
     parser.add_argument('--quiet', action='store_true',
