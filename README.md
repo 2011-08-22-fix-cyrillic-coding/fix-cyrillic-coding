@@ -9,4 +9,4 @@ Encoding `windows-1251` will be converted to `utf-8`
 Status
 ------
 
-developer version (git master branch).
+fix-cyrillic-coding-0.2.1 release
